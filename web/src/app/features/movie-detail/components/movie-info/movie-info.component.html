@@ -1,0 +1,30 @@
+<section class="relative">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movieInfo?.backdrop_path" class="w-full h-[500px] object-cover"
+        alt="movie-poster">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-transparent">
+        <div class="flex items-center py-8 w-[90%] mx-auto h-full">
+            <div class="h-full">
+                <img [src]="'https://image.tmdb.org/t/p/w500' + movieInfo?.poster_path" class="h-full" alt="movie-photo">
+            </div>
+            <div class="text-gray-100 pl-8">
+                <h1>{{movieInfo.title}}</h1>
+                <div class="flex items-center text-yellow space-x-1 text-lg py-4">
+                    <span>⭐</span>
+                    <p class="text-2xl">{{movieInfo.vote_average}} / 10</p>
+                </div>
+                <p class="py-2">{{movieInfo.original_language | languageName}}  <span class="px-3">•</span> <em>{{getGenreNames(movieInfo?.genre_ids).join(', ')}}</em></p>
+                <p>{{movieInfo.release_date | date: 'dd MMM yyyy'}}</p>
+                <button class="text-white rounded px-6 py-3 mt-8 text-lg font-semibold">Book Tickets</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-6 px-4 xs:px-6 md:px-6 lg:px-10 xl:px-16" *ngIf="movieInfo">
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+        <div class="col-span-1 sm:col-span-6">
+            <h2 class="font-bold text-2xl mb-4">About</h2>
+            <p class="leading-relaxed">{{movieInfo?.overview}}</p>
+        </div>
+    </div>
+</section>

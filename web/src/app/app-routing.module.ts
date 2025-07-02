@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'movie',
+    loadChildren:()=> import('./features/movie-detail/movie-detail.module').then(m=> m.MovieDetailModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { MovieService } from 'app/service/movie.service';
 })
 export class PopularMoviesComponent {
   nowPlayingMovies: any[] = [];
-  genreData: { [id: number]: string } = {};
+  genreData: { id: number, name: string }[] = [];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit() {
     this.getMovies();
@@ -20,19 +21,29 @@ export class PopularMoviesComponent {
   getMovies() {
     this.movieService.getNowPlayMovies().subscribe((response: any) => {
       this.nowPlayingMovies = response.results;
-      console.log(this.nowPlayingMovies)
+      console.log(this.nowPlayingMovies);
     })
   }
 
-  getAllGenre() {
-    this.movieService.getGenre().subscribe(res => {
-      this.genreData = res.genres.reduce((acc: { [key: number]: string }, genre: { id: number; name: string }) => {
-        acc[genre.id] = genre.name;
-        return acc;
-      }, {});
-      console.log(this.genreData)
-    });
+  onClickMovie(val: any) {
+    let movieId = val.id;
+    console.log(movieId)
+    let name = val.title.toLowerCase().replace(/\s+/g, '-').replace(/-+/g, '-');
+    console.log(name)
+    this.router.navigate(['movie', name, movieId]);
   }
 
+  getAllGenre() {
+    this.movieService.getGenre().subscribe((res: any) => {
+      this.genreData = res.genres;
+    })
+  }
+
+  getGenreNames(genreIds: number[]){
+    return genreIds.map(id => {
+      const genre = this.genreData.find((p: any) => p.id === id);
+      return genre ? genre.name : '';
+    }).filter(name => name);
+  }
 
 }

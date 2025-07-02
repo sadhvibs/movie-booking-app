@@ -1,0 +1,39 @@
+import { Component } from '@angular/core';
+import { MovieService } from 'app/service/movie.service';
+
+@Component({
+  selector: 'app-upcoming-movies',
+  templateUrl: './upcoming-movies.component.html',
+  styleUrls: ['./upcoming-movies.component.scss']
+})
+export class UpcomingMoviesComponent {
+  upcomingMovie: any;
+  genreData: { id: number, name: string }[] = [];
+
+  constructor(private movieService: MovieService) { }
+
+  ngOnInit() {
+    this.onLoadUpcomingMovies()
+    this.getAllGenre();
+  }
+
+  onLoadUpcomingMovies() {
+    this.movieService.getTopRates().subscribe((res: any) => {
+      this.upcomingMovie = res.results;
+    })
+  }
+
+  getAllGenre() {
+    this.movieService.getGenre().subscribe((res: any) => {
+      this.genreData = res.genres;
+    })
+  }
+
+  getGenreNames(genreId: number[]): string[] {
+    return genreId.map(id => {
+      const genre = this.genreData.find((p: any) => p.id === id)
+      return genre ? genre.name : '';
+    }).filter(name => name);
+  }
+
+}

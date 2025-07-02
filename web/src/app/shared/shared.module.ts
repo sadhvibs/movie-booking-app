@@ -3,18 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LanguageNamePipe } from './Pipe/language-name.pipe';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LanguageNamePipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SlickCarouselModule
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LanguageNamePipe,
+    SlickCarouselModule
   ]
 })
 export class SharedModule { }

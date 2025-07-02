@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from 'app/shared/shared.module';
 
 import { MovieDetailRoutingModule } from './movie-detail-routing.module';
 import { MovieDetailComponent } from './movie-detail.component';
+import { MovieInfoComponent } from './components/movie-info/movie-info.component';
+import { MovieCastsComponent } from './components/movie-casts/movie-casts.component';
+import { RelatedMoviesComponent } from './components/related-movies/related-movies.component';
 
 
 @NgModule({
   declarations: [
-    MovieDetailComponent
+    MovieDetailComponent,
+    MovieInfoComponent,
+    MovieCastsComponent,
+    RelatedMoviesComponent,
   ],
   imports: [
     CommonModule,
-    MovieDetailRoutingModule
+    MovieDetailRoutingModule,
+    SharedModule
   ]
 })
 export class MovieDetailModule { }
