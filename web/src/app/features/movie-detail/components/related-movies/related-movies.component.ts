@@ -8,7 +8,7 @@ import { MovieService } from 'app/service/movie.service';
   styleUrls: ['./related-movies.component.scss']
 })
 export class RelatedMoviesComponent {
-  
+
   movieInfoData: any;
   movieInfo: any;
   movieId: any;
@@ -78,12 +78,19 @@ export class RelatedMoviesComponent {
       {
         breakpoint: 1024,
         settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4
+        }
+      },
+      {
+        breakpoint: 850,
+        settings: {
           slidesToShow: 3,
           slidesToScroll: 3
         }
       },
       {
-        breakpoint: 640,
+        breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2
