@@ -7,6 +7,7 @@ import { MovieDetailComponent } from './movie-detail.component';
 import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 import { MovieCastsComponent } from './components/movie-casts/movie-casts.component';
 import { RelatedMoviesComponent } from './components/related-movies/related-movies.component';
+import { MovieReviewComponent } from './components/movie-review/movie-review.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { RelatedMoviesComponent } from './components/related-movies/related-movi
     MovieInfoComponent,
     MovieCastsComponent,
     RelatedMoviesComponent,
+    MovieReviewComponent,
   ],
   imports: [
     CommonModule,
