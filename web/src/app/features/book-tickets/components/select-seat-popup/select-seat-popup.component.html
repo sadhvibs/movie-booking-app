@@ -1,0 +1,14 @@
+<div class="p-8">
+  <h2 class="text-lg font-bold mb-4 text-center">🎟️ Select Seats</h2>
+
+  <div class="flex justify-center align-center mt-4">
+    <button (click)="decrement()" class="bg-gray-200 py-2 px-3 rounded font-bold">-</button>
+    <span class="font-bold text-2xl text-red-600 px-4">{{selectedSeats}}</span>
+    <button (click)="increment()" class="bg-gray-200 py-2 px-3 rounded  font-bold">+</button>
+  </div>
+
+  <div class="flex justify-around mt-8">
+    <button (click)="onClickConfirm()" class="bg-red-600 rounded text-white px-4 py-2 mx-4">Confirm</button>
+    <button (click)="onClickCancel()" class="border rounded bg-white text-red-600 px-4 py-2 mx-4">Cancel</button>
+  </div>
+</div>

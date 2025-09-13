@@ -1,0 +1,48 @@
+<div *ngIf="movieInfo" class="mb-6 py-6 border rounded-lg shadow">
+    <div class="w-[95%] mx-auto">
+        <h2 class="text-2xl font-bold text-red-600">{{ movieInfo?.title }}</h2>
+        <p class="text-sm mb-2"><em>{{movieInfo?.tagline}}</em></p>
+        <p class="text-gray-700">
+            🌐 <span class="font-semibold">Language:</span> {{ movieInfo?.original_language | uppercase }}
+        </p>
+    </div>
+</div>
+
+<div class="w-[90%] mx-auto py-6">
+
+    <div class="flex space-x-6 overflow-x-auto pb-4">
+        <div *ngFor="let item of dates" (click)="selectDate(item)" [ngClass]="{
+            'bg-red-600 text-white border-red-600 shadow-md': selectedDate === item.fullDate,
+            'shadow-md text-black': selectedDate != item.fullDate
+        }" class="cursor-pointer px-4 py-2 border rounded-lg  hover:border-red-600 hover:shadow-md transition">
+            <p class="font-medium text-sm">{{item.day}}</p>
+            <p class="font-bold">{{item.date}}</p>
+        </div>
+    </div>
+
+    <!-- Timings -->
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div *ngFor="let show of showTime" (click)="selectTime(show)" [ngClass]="{
+            'bg-red-600 text-white border-red-600 shadow-md': selectedTime?.time === show.time,
+            'shadow-md text-black': selectedTime?.time !=show.time
+        }"
+            class="cursor-pointer px-4 py-3 border rounded-lg shadow hover:border-red-600 hover:shadow-md flex justify-between items-center">
+            <span class="font-semibold">{{ show.time }}</span>
+            <span>₹{{ show.price }}</span>
+        </div>
+    </div>
+
+    <div *ngIf="selectedDate && selectedTime" class="selection mt-6 p-4 border rounded-lg border-red-600">
+        <p>🎬 Great choice! You’ve booked a show for
+            <em class="font-semibold">{{selectedDate | date: 'fullDate'}}</em> at
+            <em class="font-semibold">{{selectedTime.time}}</em> for just
+            <em class="font-semibold text-red-700">&#8377;{{selectedTime.price}}</em>
+        </p>
+    </div>
+
+    <div class="flex justify-center text-center mt-8">
+        <button (click)="openDialog()"
+        class="bg-red-600 text-white py-2 px-6 rounded border font-semibold text-lg hover:bg-white hover:text-red-600 hover:border-red-600 transition">
+        Select Seats</button>
+    </div>
+</div>
