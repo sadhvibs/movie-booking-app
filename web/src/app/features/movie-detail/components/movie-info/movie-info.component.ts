@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 
 @Component({
@@ -12,36 +12,36 @@ export class MovieInfoComponent {
   movieInfo: any;
   movieId: any;
   genreData: { id: number, name: string }[] = [];
-  genreiid : any;
+  genreiid: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService) { }
+  constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((param: any) => {
       this.movieId = param.get('id');
-      this.onLoadTopmovieInfo(this.movieId)
       this.onLoadAllGenre();
+      this.onLoadmovieInfo(this.movieId);
     })
   }
 
-  onLoadTopmovieInfo(id: any) {
-    this.movieService.getNowPlayMovies().subscribe((res: any) => {
-      this.movieInfoData = res.results;
-      this.movieInfo = this.movieInfoData.find((p: any) => p.id == id);
-      this.getGenreNames(this.movieInfo.genre_ids);
+  onLoadmovieInfo(id: any) {
+    this.movieService.getMovieDetails(id).subscribe((res: any) => {
+      this.movieInfo = res;
     })
   }
 
   onLoadAllGenre() {
     this.movieService.getGenre().subscribe(res => {
       this.genreData = res.genres;
+      // console.log(this.genreData)
     })
   }
 
-  getGenreNames(genreIds: number[]) {
-    return genreIds.map((id: any) => {
-      const genre = this.genreData.find((p: any) => p.id === id);
-      return genre ? genre.name : '';
-    }).filter(name => name)
+  getGenreNames(genres: { id: number, name: string }[]) {
+    return genres.map(g => g.name)
+  }
+
+  onClickBookTicket(id: any) {
+    this.router.navigate(['movies/book-tickets', id])
   }
 }

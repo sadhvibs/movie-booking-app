@@ -2,12 +2,11 @@
     <h2 class="font-bold text-2xl mb-4">You May Also Like</h2>
 
     <div class="relative ">
-        <ngx-slick-carousel #slickModal="slick-carousel" class="carousel pt-4" [config]="slideConfig"
-            (afterChange)="afterChange($event)">
+        <ngx-slick-carousel #slickModal="slick-carousel" class="carousel pt-4" [config]="slideConfig">
             <div ngxSlickItem class="px-2 flex flex-col items-center text-center" *ngFor="let item of filterGenreData">
                 <img [src]="'https://image.tmdb.org/t/p/w500' + item?.poster_path"
-                    class="rounded w-100 text-center mx-auto object-cover" alt="cast">
-                <p class="py-2 px-3 bg-gray-800 text-white">⭐ {{item.vote_average | number: '1.2-2'}}/10</p>
+                    class="rounded w-full h-72 text-center mx-auto object-cover" alt="cast">
+                <p class="py-2 px-3 bg-gray-800 text-white">⭐ {{item?.vote_average | number: '1.2-2'}}/10</p>
                 <h4 class="font-semibold text-base">{{item?.title}}</h4>
             </div>
         </ngx-slick-carousel>

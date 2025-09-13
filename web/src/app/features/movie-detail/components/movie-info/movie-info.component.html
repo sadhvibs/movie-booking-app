@@ -7,14 +7,15 @@
                 <img [src]="'https://image.tmdb.org/t/p/w500' + movieInfo?.poster_path" class="h-full" alt="movie-photo">
             </div>
             <div class="text-gray-100 pl-8">
-                <h1>{{movieInfo.title}}</h1>
+                <h1>{{movieInfo?.title}}</h1>
                 <div class="flex items-center text-yellow space-x-1 text-lg py-4">
                     <span>⭐</span>
-                    <p class="text-2xl">{{movieInfo.vote_average}} / 10</p>
+                    <p class="text-2xl">{{movieInfo?.vote_average}} / 10</p>
                 </div>
-                <p class="py-2">{{movieInfo.original_language | languageName}}  <span class="px-3">•</span> <em>{{getGenreNames(movieInfo?.genre_ids).join(', ')}}</em></p>
-                <p>{{movieInfo.release_date | date: 'dd MMM yyyy'}}</p>
-                <button class="text-white rounded px-6 py-3 mt-8 text-lg font-semibold">Book Tickets</button>
+                <p class="py-2">{{movieInfo?.original_language | languageName}}  <span class="px-3" *ngIf="movieInfo?.genres">•</span> <em>{{getGenreNames(movieInfo?.genres).join(', ')}}</em></p>
+                <p>{{movieInfo?.release_date | date: 'dd MMM yyyy'}}</p>
+
+                <button class="text-white rounded px-6 py-3 mt-8 text-lg font-semibold" (click)="onClickBookTicket(movieInfo?.id)">Book Tickets</button>
             </div>
         </div>
     </div>

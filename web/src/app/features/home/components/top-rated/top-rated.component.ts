@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class TopRatedComponent {
   ratedMovie: any;
   genreData: { id: number, name: string }[] = [];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit() {
     this.onLoadTopRated()
@@ -20,12 +21,13 @@ export class TopRatedComponent {
   onLoadTopRated() {
     this.movieService.getTopRates().subscribe((res: any) => {
       this.ratedMovie = res.results;
-      // console.log(this.ratedMovie)
     })
   }
 
-  getRatedId(id: any){
-    console.log(id)
+  getRatedId(movie: any){
+    const movieId = movie.id;
+    let name = movie.title.toLowerCase().replace(/\s+/g, '-').replace(/-+/g, '-');
+    this.router.navigate(['movie', name, movieId])
   }
 
   getAllGenre() {

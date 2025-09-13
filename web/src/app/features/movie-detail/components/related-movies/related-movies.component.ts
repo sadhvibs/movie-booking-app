@@ -16,13 +16,7 @@ export class RelatedMoviesComponent {
   genreiid: any;
   filterGenreData: any[] = [];
 
-  slickIndex = 0;
-
-  currentSlide = 0
-  totalSlide = 0;
-  visibleSlides = 5;
-
-  canShowPrev = false;
+  canShowPrev = true;
   canShowNext = true;
 
   @ViewChild('slickModal', { static: false }) slickModal: any;
@@ -32,48 +26,21 @@ export class RelatedMoviesComponent {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((param: any) => {
       this.movieId = param.get('id');
-      this.onLoadTopmovieInfo(this.movieId)
-      this.onLoadAllGenre();
+      this.onLoadRelatedMovies(this.movieId);
     })
   }
 
-  onLoadTopmovieInfo(id: any) {
-    this.movieService.getNowPlayMovies().subscribe((res: any) => {
-      this.movieInfoData = res.results;
-      this.movieInfo = this.movieInfoData.find((p: any) => p.id == id);
-
-      const currentGenreId: number[] = this.movieInfo?.genre_ids || [];
-
-      const relatedId = this.movieInfoData.filter((movie: any) => {
-        if (movie.id === this.movieInfo.id) return false;
-
-        return movie.genre_ids.some((genreId: number) => currentGenreId.includes(genreId))
-      });
-      this.filterGenreData = relatedId.slice(0, 10);
-      console.log(this.filterGenreData)
-      this.getGenreNames(this.movieInfo.genre_ids);
+  onLoadRelatedMovies(id: number){
+    this.movieService.getRecommendations(id).subscribe((res: any) => {
+      this.filterGenreData = res.results.slice(0, 10);
     })
   }
-
-  onLoadAllGenre() {
-    this.movieService.getGenre().subscribe(res => {
-      this.genreData = res.genres;
-    })
-  }
-
-  getGenreNames(genreIds: number[]) {
-    this.genreiid = genreIds.map((id: any) => {
-      const genre = this.genreData.find((p: any) => p.id === id);
-      return genre ? genre.name : '';
-    }).filter(name => name);
-    return this.genreiid;
-  }
-
+  
   slideConfig = {
-    slidesToShow: this.visibleSlides,
+    slidesToShow: 5,
     slidesToScroll: 5,
     arrows: false,
-    infinite: false,
+    infinite: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -99,13 +66,4 @@ export class RelatedMoviesComponent {
     ]
   };
 
-  afterChange(e: any) {
-    this.currentSlide = e.currentSlide;
-    this.checkArrowVisibility();
-  }
-
-  checkArrowVisibility() {
-    this.canShowPrev = this.currentSlide > 0;
-    this.canShowNext = this.currentSlide + this.visibleSlides < this.totalSlide;
-  }
 }

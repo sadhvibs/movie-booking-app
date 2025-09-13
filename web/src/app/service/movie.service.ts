@@ -36,4 +36,16 @@ export class MovieService {
     return this.http.get(`${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`)
   }
 
+  getMovieWatchList(){
+    return this.http.get(`${this.baseUrl}/account/{account_id}/watchlist`)
+  }
+
+  getRecommendations(movieId: number){
+    return this.http.get(`${this.baseUrl}/movie/${movieId}/recommendations?api_key=${this.apiKey}&language=en-US&page=1`)
+  }
+
+  getMovieDetails(id: number){
+    return this.http.get(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}&language=en-US`)
+  }
+
 }

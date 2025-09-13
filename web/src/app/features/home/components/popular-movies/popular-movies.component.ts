@@ -21,15 +21,12 @@ export class PopularMoviesComponent {
   getMovies() {
     this.movieService.getNowPlayMovies().subscribe((response: any) => {
       this.nowPlayingMovies = response.results;
-      console.log(this.nowPlayingMovies);
     })
   }
 
   onClickMovie(val: any) {
     let movieId = val.id;
-    console.log(movieId)
     let name = val.title.toLowerCase().replace(/\s+/g, '-').replace(/-+/g, '-');
-    console.log(name)
     this.router.navigate(['movie', name, movieId]);
   }
 

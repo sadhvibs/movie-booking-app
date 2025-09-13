@@ -8,7 +8,11 @@ const routes: Routes = [
   },
   {
     path: 'movie',
-    loadChildren:()=> import('./features/movie-detail/movie-detail.module').then(m=> m.MovieDetailModule)
+    loadChildren: () => import('./features/movie-detail/movie-detail.module').then(m => m.MovieDetailModule)
+  },
+  {
+    path: 'movies/book-tickets',
+    loadChildren: ()=> import('./features/book-tickets/book-tickets.module').then(m=> m.BookTicketsModule)
   },
   {
     path: '**',
@@ -17,7 +21,7 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
+@NgModule({ 
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

@@ -76,4 +76,5 @@ export class MovieCastsComponent {
     this.canShowPrev = this.currentSlide > 0;
     this.canShowNext = this.currentSlide + this.visibleSlides < this.totalSlide;
   }
+
 }

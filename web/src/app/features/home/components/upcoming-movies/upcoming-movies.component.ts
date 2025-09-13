@@ -18,7 +18,7 @@ export class UpcomingMoviesComponent {
   }
 
   onLoadUpcomingMovies() {
-    this.movieService.getTopRates().subscribe((res: any) => {
+    this.movieService.getUpcomingMovie().subscribe((res: any) => {
       this.upcomingMovie = res.results;
     })
   }
