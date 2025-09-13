@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 import { SelectSeatPopupComponent } from '../select-seat-popup/select-seat-popup.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ export class SelectShowtimeComponent {
 
   selectedSeats: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService, private dialog: MatDialog) { }
+  constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(param => {
@@ -92,13 +92,23 @@ export class SelectShowtimeComponent {
     this.selectedTime = time;
   }
 
-  openDialog(){
+  openDialog() {
     const dialogRef = this.dialog.open(SelectSeatPopupComponent)
 
-     dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(`✅ Seats selected: ${result}`);
-        this.selectedSeats = result;
+
+        const bookingData = {
+          movieId: this.movieId,
+          selectDate: this.selectedDate,
+          selectTime: this.selectedTime,
+          seats: result
+        }
+
+        this.router.navigate(['movies/book-tickets/seat-layout', this.movieId], {
+          state: { bookingData }
+        });
       }
     });
   }

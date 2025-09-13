@@ -1,0 +1,40 @@
+<div class="p-6">
+    <div *ngIf="movieInfo" class="relative mb-6 py-6 border border-red-600 border-l-8 rounded-lg shadow-lg bg-white">
+        <div class="w-[95%] mx-auto">
+            <h2 class="text-2xl font-bold text-red-600 mb-1">{{ movieInfo?.title }}</h2>
+            <p class="text-sm text-gray-600 mb-4"><em>{{movieInfo?.tagline}}</em></p>
+
+            <div class="space-y-4 text-gray-700 bg-white border rounded-lg  p-6">
+                <!-- Row 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <p class="flex items-center gap-2">
+                        <span class="text-lg">💺</span>
+                        <span class="font-medium">Seats:</span> {{ bookingData?.seats }}
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="text-lg">🗓️</span>
+                        <span class="font-medium">Date:</span> {{ bookingData?.selectDate | date: 'dd MMM yyy' }}
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="text-lg">⏰</span>
+                        <span class="font-medium">Time:</span> {{ bookingData?.selectTime.time }}
+                    </p>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <p class="flex items-center gap-2">
+                        <span class="text-lg">🌐</span>
+                        <span class="font-medium">Language:</span> {{ movieInfo?.original_language | uppercase }}
+                    </p>
+                    <p class="flex items-center gap-2 ">
+                        <span class="text-lg">💰</span>
+                        <span class="font-medium">Total:</span>
+                        <strong class="text-red-600">&#8377; {{ totalPrice }}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-seat-layout [bookingData]="bookingData"></app-seat-layout>

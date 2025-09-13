@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PaymentSuccessComponent } from './features/book-tickets/components/payment-success/payment-success.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'movies/book-tickets',
-    loadChildren: ()=> import('./features/book-tickets/book-tickets.module').then(m=> m.BookTicketsModule)
+    loadChildren: () => import('./features/book-tickets/book-tickets.module').then(m => m.BookTicketsModule)
+  },
+  {
+    path: 'payment-success',
+    component: PaymentSuccessComponent
   },
   {
     path: '**',
@@ -21,7 +26,7 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({ 
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
