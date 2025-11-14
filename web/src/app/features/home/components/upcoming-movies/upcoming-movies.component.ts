@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class UpcomingMoviesComponent {
   upcomingMovie: any;
   genreData: { id: number, name: string }[] = [];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit() {
     this.onLoadUpcomingMovies()
@@ -34,6 +35,10 @@ export class UpcomingMoviesComponent {
       const genre = this.genreData.find((p: any) => p.id === id)
       return genre ? genre.name : '';
     }).filter(name => name);
+  }
+
+    onClickShowAll(){
+    this.router.navigate(['/movie/upcoming-movies/all'])
   }
 
 }

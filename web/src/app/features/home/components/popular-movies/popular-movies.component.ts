@@ -45,6 +45,6 @@ export class PopularMoviesComponent {
 
 
   onClickShowAll(){
-    this.router.navigate(['/movie/'])
+    this.router.navigate(['/movie/now-streaming/all'])
   }
 }

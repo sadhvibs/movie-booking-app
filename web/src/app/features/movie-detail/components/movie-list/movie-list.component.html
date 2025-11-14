@@ -1,0 +1,22 @@
+<main class="w-[90%] mx-auto">
+    <div class="flex py-8">
+        <div class="w-1/4 top-4 sticky">
+            <h4>Rating</h4>
+            <div>
+                <!-- <small>{{  }}</small> -->
+            </div>
+        </div>
+        <div class="w-3/4 h-100 overflow-y-auto">
+            <div class="grid grid-cols-4 ">
+                <div *ngFor="let item of responseData" class="m-3 rounded bg-gray-800">
+                    <img [src]="'https://image.tmdb.org/t/p/w500' + item?.poster_path"  class="w-full rounded object-cover" alt="movie-poster">
+
+                    <div class="text-white px-3 py-1">
+                        <p class="text-xs">⭐ {{item.vote_average | number: '1.2-2'}}/10</p>
+                        <h6 class="py-1">{{item.title}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

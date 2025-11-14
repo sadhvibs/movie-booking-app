@@ -1,7 +1,7 @@
 <section class="py-6 px-4 xs:px-6 md:px-6 lg:px-10 xl:px-16">
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-semibold">Now Streaming</h2>
-        <a (click)="onClickShowAll()">Show all &rarr;</a>
+        <a class="cursor-pointer" (click)="onClickShowAll()">Show all &rarr;</a>
     </div>
     <div class="flex gap-4 overflow-x-auto scrollbar-hide">
         <div *ngFor="let movie of nowPlayingMovies?.slice(0, 10)" (click)="onClickMovie(movie)" class="bg-gray-100 rounded min-w-[200px] cursor-pointer">
