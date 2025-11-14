@@ -28,7 +28,6 @@ export class SeatLayoutComponent {
         this.loadMovieDetails(movieId);
       }
     });
-
   }
 
   loadMovieDetails(id: any) {

@@ -9,7 +9,6 @@ import { MovieCastsComponent } from './components/movie-casts/movie-casts.compon
 import { RelatedMoviesComponent } from './components/related-movies/related-movies.component';
 import { MovieReviewComponent } from './components/movie-review/movie-review.component';
 
-
 @NgModule({
   declarations: [
     MovieDetailComponent,

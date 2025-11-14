@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieDetailComponent } from './movie-detail.component';
-import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 
 const routes: Routes = [
   {
@@ -9,7 +8,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MovieDetailComponent
+        component: MovieDetailComponent,
+  
       },
       {
         path: ':iid/:id',

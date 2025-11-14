@@ -43,4 +43,8 @@ export class PopularMoviesComponent {
     }).filter(name => name);
   }
 
+
+  onClickShowAll(){
+    this.router.navigate(['/movie/'])
+  }
 }

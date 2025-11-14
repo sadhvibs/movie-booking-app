@@ -6,7 +6,7 @@
             (afterChange)="afterChange($event)">
             <div ngxSlickItem class="px-2 flex flex-col items-center text-center" *ngFor="let item of castsData">
                 <img [src]="'https://image.tmdb.org/t/p/w500' + item?.profile_path"
-                    class="h-32 w-32 object-top object-cover rounded-full text-center mx-auto" alt="cast">
+                    class="h-32 w-32 object-cover rounded-full text-center mx-auto" alt="cast">
                 <p>{{item?.name}}</p>
             </div>
         </ngx-slick-carousel>
