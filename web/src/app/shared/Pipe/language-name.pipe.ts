@@ -1,7 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'languageName'
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class LanguageNamePipe implements PipeTransform {
 
@@ -14,7 +17,8 @@ export class LanguageNamePipe implements PipeTransform {
     ko: 'Korean',
     zh: 'Chinese',
     de: 'German',
-    it: 'Italian'
+    it: 'Italian',
+    th: 'Thai'
   }
 
   transform(code: string): string {

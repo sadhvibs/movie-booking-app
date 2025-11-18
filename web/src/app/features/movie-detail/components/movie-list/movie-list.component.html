@@ -1,20 +1,39 @@
 <main class="w-[90%] mx-auto">
     <div class="flex py-8">
-        <div class="w-1/4 top-4 sticky">
-            <h4>Rating</h4>
-            <div>
-                <!-- <small>{{  }}</small> -->
+        <div class="w-[20%] top-4 sticky">
+            <div class="rating-option mb-4">
+                <h4 class="text-lg font-semibold mb-2">Rating</h4>
+                <button (click)="filterRating(item.value)" *ngFor="let item of ratingOptions"
+                    class="gap-2 rounded p-1 m-1 border border-red-600 text-sm transition"
+                     [ngClass]="{'bg-red-600 text-white' : selectedrating===item.value, 
+                            'bg-white' : selectedrating!==item.value}">
+                    {{item.label}}
+                </button>
+            </div>
+            <div class="mb-4">
+                <h4 class="text-lg font-semibold mb-2">Language</h4>
+                <button *ngFor="let lang of language" (click)="filterLanguage(lang.code)"
+                class="gap-2 rounded p-1 m-1 border border-red-600 text-sm transition"
+                [ngClass]="{'bg-red-600 text-white' : selectedLanguage.includes(lang.code)}">
+                    {{lang.label}}
+                </button>
             </div>
         </div>
-        <div class="w-3/4 h-100 overflow-y-auto">
+        <div class="w-[80%] h-100 overflow-y-auto">
             <div class="grid grid-cols-4 ">
-                <div *ngFor="let item of responseData" class="m-3 rounded bg-gray-800">
-                    <img [src]="'https://image.tmdb.org/t/p/w500' + item?.poster_path"  class="w-full rounded object-cover" alt="movie-poster">
+                <div *ngFor="let item of filterMovies" class="m-3 rounded bg-gray-800">
+                    <ng-container *ngIf="filterMovies.length>0">
+                        <img [src]="'https://image.tmdb.org/t/p/w500' + item?.poster_path"
+                            class="w-full h-72 rounded object-cover" alt="{{item.title}}">
 
-                    <div class="text-white px-3 py-1">
-                        <p class="text-xs">⭐ {{item.vote_average | number: '1.2-2'}}/10</p>
-                        <h6 class="py-1">{{item.title}}</h6>
-                    </div>
+                        <div class="text-white px-3 py-1">
+                            <p class="text-xs">⭐ {{item.vote_average | number: '1.2-2'}}/10</p>
+                            <h6 class="py-1">{{item.title}}</h6>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="filterMovies.length===0">
+                        <h3 class="">NO DATA FOUND</h3>
+                    </ng-container>
                 </div>
             </div>
         </div>
