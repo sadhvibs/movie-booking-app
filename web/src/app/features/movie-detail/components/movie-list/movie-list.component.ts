@@ -16,6 +16,8 @@ export class MovieListComponent {
   language: any[] = [];
   selectedLanguage: string[] = [];
   selectedrating: string | null = null;
+  selectedGenre: number[] = [];
+  genreData: any[] = [];
 
   ratingOptions = [
     { label: '9★ above', value: '9plus' },
@@ -37,6 +39,7 @@ export class MovieListComponent {
       else if (movieUrl.includes('upcoming-movies')) {
         this.getUpcomingMovies();
       }
+      this.getAllGenre();
     })
   }
 
@@ -47,9 +50,10 @@ export class MovieListComponent {
       this.filterMovies = [...this.responseData];
       console.log(this.filterMovies);
 
-      //considering unique  languages
+      //considering unique languages
       const uniqueLanguage = new Set(this.responseData.map((m => m.original_language)));
       this.language = Array.from(uniqueLanguage).map(code => ({ code, label: this.languageName.transform(code) }))
+
     })
   }
 
@@ -74,6 +78,23 @@ export class MovieListComponent {
     }
     else {
       this.selectedLanguage.push(code);
+    }
+    this.applyAllFilters();
+  }
+
+  getAllGenre() {
+    this.movieService.getGenre().subscribe((res: any) => {
+      this.genreData = res.genres;
+      console.log(this.genreData)
+    })
+  }
+
+  filterGenres(id: number) {
+    if (this.selectedGenre.includes(id)) {
+      this.selectedGenre = this.selectedGenre.filter(g => g !== id)
+    }
+    else {
+      this.selectedGenre.push(id);
     }
     this.applyAllFilters();
   }
@@ -103,6 +124,12 @@ export class MovieListComponent {
       else {
         filteredValue = filteredValue.filter((p: any) => p.vote_average < 6)
       }
+    }
+
+    //applied genre filter
+    if (this.selectedGenre.length > 0) {
+      filteredValue = filteredValue.filter(g => g.genre_ids.some((gid: number)=> this.selectedGenre.includes(gid)))
+      console.log(filteredValue)
     }
 
     //final filter value pushed to filterMovies

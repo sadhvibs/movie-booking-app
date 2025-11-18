@@ -1,7 +1,7 @@
-<main class="w-[90%] mx-auto">
+<main class="w-[92%] mx-auto">
     <div class="flex py-8">
-        <div class="w-[20%] top-4 sticky">
-            <div class="rating-option mb-4">
+        <div class="w-[25%] top-4 sticky">
+            <div class="rating-option mb-3">
                 <h4 class="text-lg font-semibold mb-2">Rating</h4>
                 <button (click)="filterRating(item.value)" *ngFor="let item of ratingOptions"
                     class="gap-2 rounded p-1 m-1 border border-red-600 text-sm transition" [ngClass]="{'bg-red-600 text-white' : selectedrating===item.value, 
@@ -9,7 +9,7 @@
                     {{item.label}}
                 </button>
             </div>
-            <div class="mb-4">
+            <div class="mb-3">
                 <h4 class="text-lg font-semibold mb-2">Language</h4>
                 <button *ngFor="let lang of language" (click)="filterLanguage(lang.code)"
                     class="gap-2 rounded p-1 m-1 border border-red-600 text-sm transition"
@@ -17,8 +17,16 @@
                     {{lang.label}}
                 </button>
             </div>
+            <div class="mb-3">
+                <h4 class="text-lg font-semibold mb-2">Genre</h4>
+                <button *ngFor="let genre of genreData" (click)="filterGenres(genre.id)"
+                    class="gap-2 rounded p-1 m-1 border border-red-600 text-sm transition"
+                    [ngClass]="{'bg-red-600 text-white': selectedGenre.includes(genre.id)}">
+                    {{genre.name}}
+                </button>
+            </div>
         </div>
-        <div class="w-[80%] h-100 overflow-y-auto">
+        <div class="w-[75%] h-100 overflow-y-auto">
 
             <ng-container *ngIf="filterMovies.length>0">
                 <div class="grid grid-cols-4 ">
