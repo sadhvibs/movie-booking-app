@@ -1,14 +1,26 @@
 <header class="shadow-md">
     <div class="container px-4 py-1 flex items-center justify-between">
-        <a href="home">
+        <a class="cursor-pointer" href="home">
             <img class="h-14 w-auto" src="assets/images/logo.svg" alt="logo">
         </a>
         <nav class="space-x-6 md:flex">
             <a routerLink="/home" class="hover:text-red-700 text-bold transition">Home</a>
             <a routerLink="" class="hover:text-red-700 transition">Movies</a>
         </nav>
+        <div class="relative w-72">
+            <form action="">
+                <div class="flex justify-between items-center rounded-full w-full py-2 px-3 border border-red-700">
+                    <input type="text" placeholder="Search for Movies" class="outline-none">
+                    <svg class="w-5 h-5 right-3 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+                    </svg>
+                </div>
+            </form>
+        </div>
         <div class="space-x-4 hidden md:flex">
-            <button class="text-white px-5 py-1 rounded transition">Login</button>
+            <button class="text-white px-5 py-1 rounded transition bg-red-700">Login</button>
         </div>
     </div>
 </header>
