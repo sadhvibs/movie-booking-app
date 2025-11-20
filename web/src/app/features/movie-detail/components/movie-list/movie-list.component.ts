@@ -99,6 +99,14 @@ export class MovieListComponent {
     this.applyAllFilters();
   }
 
+  onClickReset(){
+    this.filterMovies = [...this.responseData]
+
+    this.selectedLanguage = [];
+    this.selectedrating = '';
+    this.selectedGenre = [];
+  }
+
   applyAllFilters() {
     let filteredValue = [...this.responseData];
 

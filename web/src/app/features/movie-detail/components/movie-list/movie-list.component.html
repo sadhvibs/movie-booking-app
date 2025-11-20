@@ -1,6 +1,9 @@
-<main class="w-[92%] mx-auto">
+<main class="w-[92%] mx-auto h-screen">
     <div class="flex py-8">
-        <div class="w-[25%] top-4 sticky">
+        <div class="w-[22%] h-screen top-0 sticky">
+            <div class="float-right">
+                <small class="underline text-red-600 cursor-pointer" (click)="onClickReset()">Reset</small>
+            </div>
             <div class="rating-option mb-3">
                 <h4 class="text-lg font-semibold mb-2">Rating</h4>
                 <button (click)="filterRating(item.value)" *ngFor="let item of ratingOptions"
@@ -26,7 +29,7 @@
                 </button>
             </div>
         </div>
-        <div class="w-[75%] h-100 overflow-y-auto">
+        <div class="w-[78%] h-screen overflow-y-auto">
 
             <ng-container *ngIf="filterMovies.length>0">
                 <div class="grid grid-cols-4 ">
@@ -36,7 +39,7 @@
 
                         <div class="text-white px-3 py-1">
                             <p class="text-xs">⭐ {{item.vote_average | number: '1.2-2'}}/10</p>
-                            <h6 class="py-1">{{item.title}}</h6>
+                            <h6 class="py-1 text-sm">{{item.title}}</h6>
                         </div>
                     </div>
                 </div>
