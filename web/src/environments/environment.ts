@@ -10,3 +10,4 @@ export const environment = {
     },
     tmdbApiKey: "eafe8e0ce67c7abff5f136c9cbf8a5f0"
 };
+
