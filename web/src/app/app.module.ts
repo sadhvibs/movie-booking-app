@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent
