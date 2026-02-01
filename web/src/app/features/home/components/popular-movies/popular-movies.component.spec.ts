@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PopularMoviesComponent } from './popular-movies.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PopularMoviesComponent', () => {
   let component: PopularMoviesComponent;
@@ -8,6 +10,7 @@ describe('PopularMoviesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports : [RouterTestingModule, HttpClientTestingModule],
       declarations: [PopularMoviesComponent]
     });
     fixture = TestBed.createComponent(PopularMoviesComponent);

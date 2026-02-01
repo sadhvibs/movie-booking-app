@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookTicketsComponent } from './book-tickets.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookTicketsComponent', () => {
   let component: BookTicketsComponent;
@@ -8,6 +9,7 @@ describe('BookTicketsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [BookTicketsComponent]
     });
     fixture = TestBed.createComponent(BookTicketsComponent);

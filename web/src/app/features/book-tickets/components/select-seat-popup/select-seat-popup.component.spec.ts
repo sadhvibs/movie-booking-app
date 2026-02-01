@@ -1,15 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectSeatPopupComponent } from './select-seat-popup.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SelectSeatPopupComponent', () => {
   let component: SelectSeatPopupComponent;
   let fixture: ComponentFixture<SelectSeatPopupComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [SelectSeatPopupComponent]
-    });
+    }).compileComponents();
     fixture = TestBed.createComponent(SelectSeatPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
