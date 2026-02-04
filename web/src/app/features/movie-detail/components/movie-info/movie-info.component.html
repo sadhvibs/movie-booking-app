@@ -2,7 +2,7 @@
     <img [src]="'https://image.tmdb.org/t/p/w500' + movieInfo?.backdrop_path" class="w-full h-[500px] object-cover"
         alt="movie-poster">
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-transparent">
-        <div class="flex items-center py-8 w-[90%] mx-auto h-full">
+        <div class="flex items-center py-8 w-[90%] mx-auto h-full" *ngIf="movieInfo">
             <div class="h-full">
                 <img [src]="'https://image.tmdb.org/t/p/w500' + movieInfo?.poster_path" class="h-full" alt="movie-photo">
             </div>

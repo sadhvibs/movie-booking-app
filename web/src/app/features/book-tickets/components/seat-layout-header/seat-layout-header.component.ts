@@ -25,15 +25,13 @@ export class SeatLayoutHeaderComponent {
 
     // Works during navigation
     const nav = this.router.getCurrentNavigation();
-    this.bookingData = nav?.extras?.state?.['bookingData'];
-
+    this.bookingData = nav?.extras?.state?.['bookingData'] || history?.state['bookingData'];
 
     // Fallback (works after refresh too)
-    if (!this.bookingData) {
-      this.bookingData = history.state['bookingData'];
+    if (this.bookingData) {
+      this.totalPrice =
+        this.bookingData.seats * this.bookingData.selectTime.price;
     }
-    console.log(this.bookingData)
-    this.totalPrice = this.bookingData.seats * this.bookingData.selectTime.price;
   }
 
   loadMovieDetails(id: any) {

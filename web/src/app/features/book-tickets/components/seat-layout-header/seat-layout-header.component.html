@@ -37,4 +37,6 @@
         </div>
     </div>
 </div>
-<app-seat-layout [bookingData]="bookingData"></app-seat-layout>
+<div *ngIf="bookingData">
+    <app-seat-layout [bookingData]="bookingData"></app-seat-layout>
+</div>

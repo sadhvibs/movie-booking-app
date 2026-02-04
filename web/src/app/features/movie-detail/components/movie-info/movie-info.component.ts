@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'app/service/movie.service';
 
 @Component({
@@ -33,7 +33,6 @@ export class MovieInfoComponent {
   onLoadAllGenre() {
     this.movieService.getGenre().subscribe(res => {
       this.genreData = res.genres;
-      // console.log(this.genreData)
     })
   }
 

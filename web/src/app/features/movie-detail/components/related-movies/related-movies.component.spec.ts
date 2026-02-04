@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RelatedMoviesComponent } from './related-movies.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SharedModule } from 'app/shared/shared.module';
 
 describe('RelatedMoviesComponent', () => {
   let component: RelatedMoviesComponent;
@@ -10,7 +11,7 @@ describe('RelatedMoviesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, SharedModule],
       declarations: [RelatedMoviesComponent]
     });
     fixture = TestBed.createComponent(RelatedMoviesComponent);
