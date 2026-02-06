@@ -7,7 +7,6 @@ import { MovieDetailComponent } from './movie-detail.component';
 import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 import { MovieCastsComponent } from './components/movie-casts/movie-casts.component';
 import { RelatedMoviesComponent } from './components/related-movies/related-movies.component';
-import { MovieReviewComponent } from './components/movie-review/movie-review.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
     MovieInfoComponent,
     MovieCastsComponent,
     RelatedMoviesComponent,
-    MovieReviewComponent,
     MovieListComponent,
   ],
   imports: [

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieCastsComponent } from './movie-casts.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from 'app/shared/shared.module';
+import { provideRouter } from '@angular/router';
 
 describe('MovieCastsComponent', () => {
   let component: MovieCastsComponent;
@@ -11,8 +11,9 @@ describe('MovieCastsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule, SharedModule],
-      declarations: [MovieCastsComponent]
+      imports: [ HttpClientTestingModule, SharedModule],
+      declarations: [MovieCastsComponent],
+      providers: [provideRouter([])]
     });
     fixture = TestBed.createComponent(MovieCastsComponent);
     component = fixture.componentInstance;

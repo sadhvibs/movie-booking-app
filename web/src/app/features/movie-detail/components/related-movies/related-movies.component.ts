@@ -36,6 +36,10 @@ export class RelatedMoviesComponent {
     })
   }
   
+  trackByFn(index: number, item: any): number{
+    return item.id;
+  }
+
   slideConfig = {
     slidesToShow: 5,
     slidesToScroll: 5,

@@ -42,7 +42,10 @@ export class PopularMoviesComponent {
       return genre ? genre.name : '';
     }).filter(name => name);
   }
-
+  
+ trackByFn(index: number, movie: any): number{
+    return movie.id;
+  }
 
   onClickShowAll(){
     this.router.navigate(['/movie/now-streaming/all'])

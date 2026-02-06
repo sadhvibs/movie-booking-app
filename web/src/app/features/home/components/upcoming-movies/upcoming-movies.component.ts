@@ -37,7 +37,17 @@ export class UpcomingMoviesComponent {
     }).filter(name => name);
   }
 
-    onClickShowAll(){
+  trackByFn(index: number, movie: any): number{
+    return movie.id;
+  }
+
+  onClickMovie(value: any) {
+    console.log(value)
+    const movieId = value.id;
+    const title = value.title.toLowerCase();
+    this.router.navigate(['/movie/', title, movieId])
+  }
+  onClickShowAll() {
     this.router.navigate(['/movie/upcoming-movies/all'])
   }
 

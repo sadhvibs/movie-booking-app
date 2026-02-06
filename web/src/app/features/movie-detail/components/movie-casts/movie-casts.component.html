@@ -4,7 +4,8 @@
     <div class="relative lg:w-[75%] md-w-[75%] xl:w-[75%] sm:w-[100%]">
         <ngx-slick-carousel #slickModal="slick-carousel" class="carousel pt-4" [config]="slideConfig"
             (afterChange)="afterChange($event)">
-            <div ngxSlickItem class="px-2 flex flex-col items-center text-center" *ngFor="let item of castsData">
+            <div ngxSlickItem  *ngFor="let item of castsData; index as i; trackBy: trackByFn"
+            class="px-2 flex flex-col items-center text-center">
                 <img [src]="'https://image.tmdb.org/t/p/w500' + item?.profile_path"
                     class="h-32 w-32 object-cover rounded-full text-center mx-auto" alt="cast">
                 <p>{{item?.name}}</p>

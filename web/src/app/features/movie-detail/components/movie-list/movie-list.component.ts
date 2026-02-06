@@ -43,6 +43,10 @@ export class MovieListComponent {
     })
   }
 
+  private triggerFilter() {
+    this.applyAllFilters();
+  }
+
   getNowStreaming() {
     this.movieService.getNowPlayMovies().subscribe(response => {
       this.streamingData = response;
@@ -69,7 +73,7 @@ export class MovieListComponent {
   filterRating(value: string) {
     this.selectedrating = value;
     console.log(this.selectedrating)
-    this.applyAllFilters();
+    this.triggerFilter();
   }
 
   filterLanguage(code: any) {
@@ -79,7 +83,7 @@ export class MovieListComponent {
     else {
       this.selectedLanguage.push(code);
     }
-    this.applyAllFilters();
+    this.triggerFilter();
   }
 
   getAllGenre() {
@@ -96,15 +100,18 @@ export class MovieListComponent {
     else {
       this.selectedGenre.push(id);
     }
-    this.applyAllFilters();
+    this.triggerFilter();
   }
 
-  onClickReset(){
-    this.filterMovies = [...this.responseData]
-
+  onClickReset() {
     this.selectedLanguage = [];
-    this.selectedrating = '';
+    this.selectedrating = null;
     this.selectedGenre = [];
+    this.filterMovies = [...this.responseData];
+  }
+
+  trackByFn(id: number, movie: any): number {
+    return movie.id;
   }
 
   applyAllFilters() {
@@ -136,7 +143,7 @@ export class MovieListComponent {
 
     //applied genre filter
     if (this.selectedGenre.length > 0) {
-      filteredValue = filteredValue.filter(g => g.genre_ids.some((gid: number)=> this.selectedGenre.includes(gid)))
+      filteredValue = filteredValue.filter(g => g.genre_ids.some((gid: number) => this.selectedGenre.includes(gid)))
       console.log(filteredValue)
     }
 

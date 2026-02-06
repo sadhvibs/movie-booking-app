@@ -67,6 +67,10 @@ export class MovieCastsComponent {
     ]
   };
 
+  trackByFn(index: number, movie: any): number{
+    return movie.id;
+  }
+
   afterChange(e: any) {
     this.currentSlide = e.currentSlide;
     this.checkArrowVisibility();
